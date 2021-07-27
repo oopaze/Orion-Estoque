@@ -1,0 +1,102 @@
+body, p, h1, ul, li, blockquote {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-size: 1.2rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+    background-image: linear-gradient(#386871, #1F393E);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template: 
+        "logo login-form";
+
+    box-shadow: 0 0 1em #00ccf079;
+}
+
+.logo {
+    grid-area: logo;
+}
+
+.content-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+}
+
+.content-logo img {
+    display: block;
+    width: 90%;
+}
+
+.login-form {
+    grid-area: login-form;
+}
+
+.login-form h2 {
+    align-self: flex-start;
+}
+
+.sub-content {
+    width: 500px;
+    height: 600px;
+
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media(max-width: 1048px) {
+
+    .grid {
+        grid-template: 
+            "login-form";
+    }
+    
+    .logo {
+        display: none;
+    }
+
+    .form-logo {
+        display: flex;
+    }
+}
+
+@media(max-width: 530px){
+    .login-form {
+        width: 300px;
+    }
+
+    html {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Orion Login</title>
+
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/form.css' %}">
+        <link rel="stylesheet" href="{% static 'css/login/login.css' %}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        
+    </head>
+
+    <body>
+        <div class="grid">
+            <div class="sub-content logo">
+                <div class="content-logo">
+                    <img src="{% static 'image/logo/logo-login.svg' %}" alt="Imagem Logo">
+                </div>
+            </div>
+            
+            <div class="sub-content login-form">
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="messages">
+                        {% for message in messages %}
+                            <span class="error"> {{ message }} </span>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-logo">
+                        <img src="{% static 'image/logo/logo-login.svg' %}" alt="logo" style="width: 50%;">
+                    </div>
+
+                    <div class="title">
+                        <h2 style="text-align: left;"> Sing In </h2>
+                    </div>
+
+                    <div class="form-control">
+                        <div class="input-control">
+                            <i class="small material-icons">account_circle</i>
+                            {{ form.username }}
+                            <i class="small material-icons">broken_image</i>
+                        </div>
+                    </div>
+
+
+                    <div class="form-control">
+                        <div class="input-control">
+                            <i class="small material-icons">lock</i>
+                            {{ form.password }}
+                            <i class="small material-icons">broken_image</i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-checkbox">
+                        <div>
+                            <input id="remember_me" type="checkbox">
+                            <label for="remember_me"> Remember me </label>
+                        </div>
+
+                        <a id="forget_password" href="#"> Esqueceu sua senha?</a>
+                    </div>
+                    <button type="submit">Entrar</button>
+                </form>
+            </div>
+        </div>
+        
+    </body>
+</html>
