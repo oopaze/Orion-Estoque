@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {% for erro in errors %}
+        <p> {{ erro }} </p>
+    {% endfor %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+
+        <button type="submit">Salvar</button>
+    </form>
+{% endblock %}
+

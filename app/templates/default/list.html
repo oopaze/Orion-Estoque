@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for obj in objects %}
+        <p>
+            <strong>{{obj.marca}} - {{obj.armazenamento}} - {{obj.modelo}} - (R$ {{obj.valor_revenda}})</strong>
+            <a href="{% url 'update_produto' id=obj.id %}"> Editar </a>
+            <a href="{% url 'detail_produto' id=obj.id %}"> Ver mais </a>
+        </p>
+    {% endfor %}
+
+    <a href="{% url 'create_produto' %}"> Add Produto </a>
+{% endblock %}
+
+
+

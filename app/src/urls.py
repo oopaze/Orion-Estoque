@@ -27,5 +27,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', CustomLoginView.as_view(), name="login"),
     path('logout/', LogoutView.as_view(), name="logout"),
-    path('user/', include('user.urls'), name="user")
+    path('user/', include('user.urls'), name="user"),
+    path('produto/', include('produto.urls'), name="produto")
 ]
+
+
+
