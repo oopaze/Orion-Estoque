@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <h2> Seja Bem-Vindo </h2>
-
-    <a href="{% url 'logout' %}"> Sair </a>
-
-    <a href="{% url 'list_produtos' %}">Produtos</a>
+    <div class="card custom-card">
+        <div class="card-header">
+            <h4 class="title"> Seja Bem-Vindo </h4>
+        </div>
+        <div class="card-body">
+            <p> Fodase amigo </p>
+        </div>
+        <div class="card-footer">
+            <div class="button-toolbox">
+                <a class="btn btn-secondary" href="{% url 'logout' %}"> Sair </a>
+                <a class="btn btn-secondary" href="{% url 'list_produtos' %}">Produtos</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

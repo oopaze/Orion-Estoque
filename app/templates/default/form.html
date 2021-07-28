@@ -1,15 +1,27 @@
 {% extends "base.html" %}
+{% load bootstrap4 %}
+
 {% block content %}
+    <div class="card custom-card">
+        <form action="" method="post">
+            <div class="card-header">
+                <h4 class="title"> Form Produto </h4>
+            </div>
+            <div class="card-body">
+                {% for erro in errors %}
+                    <p> {{ erro }} </p>
+                {% endfor %}
 
-    {% for erro in errors %}
-        <p> {{ erro }} </p>
-    {% endfor %}
-
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form }}
-
-        <button type="submit">Salvar</button>
-    </form>
+                {% csrf_token %}
+                {% bootstrap_form form %}
+            </div>
+            <div class="card-footer">
+                <div class="button-toolbar">
+                    <a class="btn btn-dark" href="{% url 'list_produtos' %}">Voltar</a>
+                    <button class="btn btn-success" type="submit">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}
 
