@@ -1,0 +1,19 @@
+
+<div class="header-container">
+    <div class="header-left-content" style="display: none;">
+        <button class="button-toggle">
+            <i class="material-icons">view_headline</i>
+        </button>
+    </div>
+    <div class="header-center-content">
+        <h4> {{ title }} </h4>
+    </div>
+    <div class="header-right-content">
+        <p style="margin-right: 10px;"> Olá, <strong> {{ request.user.get_full_name }} </strong> </p> 
+        <button class="info-user"> 
+            <span>
+                {{ request.user.get_first_letter }}
+            </span>
+        </button>
+    </div>
+</div>

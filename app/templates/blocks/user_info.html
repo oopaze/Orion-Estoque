@@ -1,0 +1,21 @@
+
+<div class="info-user-container">
+    <div class="div-body">
+        <div class="div-toolbar">   
+            <h4> Perfil do usuário </h4>
+            <button class="info-user-close">  <i class="material-icons">close</i> </button>
+        </div>
+
+        <div class="user-actions">
+            <div class="user-letter"> {{ request.user.get_first_letter }} </div>
+            <div class="actions">
+                <span> <strong> {{ request.user.get_full_name }} </strong></span>
+                <span>{{ request.user.email }}</span>
+                <a href="#" class="btn-muted"> Minhas Informações </a>
+                <a href="{% url 'logout' %}"  class="btn-muted"> Sair </a>
+            </div>
+        </div>
+
+        <hr style="border: 1px solid #79959c;">
+    </div>
+</div>

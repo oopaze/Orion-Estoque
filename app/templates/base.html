@@ -5,32 +5,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Orion Estoque{% block title %} - {{ title }} {% endblock %}</title>
     
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/base/grid.css' %}">
     <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/info_user.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base/grid.css' %}">
+
+    <style>
+        .footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 12px;
+        }
+
+        .footer-link {
+            color: #35383c;
+        }
+
+        .footer-link:hover {
+            border-bottom: 0.1rem solid #1f78fd50;
+        }
+    </style>
     
     {% block extra_css %}
     {% endblock %}
 </head>
 <body>
     <div class="custom-container">
-        <div class="custom-header custom-grid-area"></div>
-        <div class="custom-nav custom-grid-area"></div>
+        <header class="custom-header custom-grid-area">
+            {% include "blocks/header.html" %}
+        </header>
+        <div class="custom-nav custom-grid-area nav-grid">
+            {% include "blocks/menu.html" %}
+        </div>
         <div class="custom-content custom-grid-area">
             {% block content %}
             {% endblock %}
         </div>
-        <div class="footer custom-grid-area"></div>
+        <footer class="footer custom-grid-area">
+            <p>
+                Copyright &copy; <a href="#" class="footer-link">Orion Soluções</a> 2021
+            </p>
+        </footer>
+
+        {% include "blocks/user_info.html" %}
     </div>
+
+
 
 <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
 
+    <script>
+        $(document).ready(function(){
+            $("button.info-user").on('click', function(){
+                $(".info-user-container").addClass("active");
+            });
+
+            $("button.info-user-close").on("click", function(){
+                $(".info-user-container").removeClass("active");
+            })
+
+            $("header .button-toggle").on('click', function(){
+                $(".nav-grid").addClass("active");
+            });
+
+            $(".nav-grid .nav-close").on("click", function(){
+                $(".nav-grid").removeClass("active");
+            })
+        })
+    </script>
     {% block extra_js %}
     {% endblock %}
 </body>

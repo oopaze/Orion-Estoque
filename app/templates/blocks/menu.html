@@ -1,0 +1,42 @@
+{% load static %}
+
+<div class="logo">
+    <button class="nav-close">  <i class="material-icons">close</i> </button>
+    <a href="/" style="width: 100%; height:100%;">
+        <img src="{% static 'image/logo/logo-login.svg' %}" alt="Imagem Logo">
+    </a>
+</div>
+<div class="menu">
+    <ul class="custom-nav-ul custom-nav">
+        <li class="custom-nav-item">
+            <a href="/" class="custom-nav-link {% if menu == 'home' %} active {% endif %}"> 
+                <i class="material-icons">house</i>
+                Home 
+            </a>
+        </li>
+        <li class="custom-nav-item">
+            <a href="#" class="custom-nav-link"> 
+                <i class="material-icons">widgets</i>
+                Dashboard 
+            </a>
+        </li>
+        <li class="custom-nav-item">
+            <a href="{% url 'list_produtos' %}" class="custom-nav-link {% if menu == 'produtos' %} active {% endif %}">
+                <i class="material-icons">style</i>
+                Produtos
+            </a>
+        </li>
+        <li class="custom-nav-item">
+            <a href="#" class="custom-nav-link"> 
+                <i class="material-icons">local_offer</i>
+                Vendas 
+            </a>
+        </li>
+        <li class="custom-nav-item">
+            <a href="#" class="custom-nav-link">
+                <i class="material-icons">group</i>
+                Usuários
+            </a>
+        </li>
+    </ul>
+</div>

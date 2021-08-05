@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>{{object}}</h2>
-    <p><strong>Serial:</strong> {{object.serial}}</p>
-    <p> <strong>Descrição:</strong> {{object.descricao}} </p>
-    <p> <strong>Marca: </strong> {{object.marca}} </p>
-    <p> <strong>Armazenamento:</strong> {{object.armazenamento}} </p>
-    <p> <strong>Modelo:</strong> {{object.modelo}} </p>
-    <p> <strong>Valor:</strong> {{object.valor_revenda}} </p>
-    <p> <strong>Quantidade:</strong> {{object.quantidade}} </p>
-    <p> <strong>Criado em:</strong> {{object.criado_em|date:"d/m/Y"}} </p>
-
-    <form action="{% url 'delete_produto' id=object.id %}" method="DELETE">
-        <button type="submit"> Delete </button>
-    </form>
+    <div class="card custom-card">
+        <div class="card-header">
+            <h2>{{object}}</h2>
+            <p><strong>Serial:</strong> {{object.serial}}</p>
+            <p> <strong>Descrição:</strong> {{object.descricao}} </p>
+            <p> <strong>Marca: </strong> {{object.marca}} </p>
+            <p> <strong>Armazenamento:</strong> {{object.armazenamento}} </p>
+            <p> <strong>Modelo:</strong> {{object.modelo}} </p>
+            <p> <strong>Valor:</strong> {{object.valor_revenda}} </p>
+            <p> <strong>Quantidade:</strong> {{object.quantidade}} </p>
+            <p> <strong>Criado em:</strong> {{object.criado_em|date:"d/m/Y"}} </p>
+            
+            <form action="{% url 'delete_produto' id=object.id %}" method="DELETE">
+                <button type="submit"> Delete </button>
+            </form>
+        </div>
+    </div>
 {% endblock%}

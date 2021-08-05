@@ -5,4 +5,8 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-    return render(request, "default/index.html")
+    context = {
+        "menu": "home",
+        "title": "Home"
+    }
+    return render(request, "default/index.html", context)

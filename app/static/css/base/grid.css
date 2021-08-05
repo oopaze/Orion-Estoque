@@ -11,7 +11,7 @@
 
 .custom-nav {
     grid-area: nav;
-    background-image: linear-gradient(#386871, #1F393E);
+    background-image: linear-gradient(#1c3236, #0d171a);
 }
 
 .custom-header {
@@ -21,9 +21,10 @@
 .custom-content {
     grid-area: content;
     margin: 1%;
-    padding: 1% 3%;
 
     height: auto;
+
+    border-radius: 2%;
 }
 
 .footer {
@@ -33,4 +34,74 @@
 .custom-grid-area {
     background-color: white;
     box-shadow: 0px 0px 1em rgba(0, 0, 0, 0.137);
+}
+
+@media(max-width: 800px){
+    .custom-container {
+        display: grid;
+        grid-template: 
+            "header header header" 100px
+            "content content content"
+            "footer footer footer" 50px
+            / 1fr 1fr 1fr;
+    }
+
+    .custom-nav.custom-grid-area {
+        position: fixed;
+        z-index: 2;
+        
+        width: 50% !important;
+        height: 100%;
+
+        top: 2000px;
+    
+        transition: 1s;
+    }
+
+    .custom-nav.custom-grid-area.active {
+        transition: 1s;
+        top: 0;
+    }
+
+    .info-user-container {
+        width: 100% !important;
+    }
+
+    .info-user-close {
+        width: 50px !important;
+        height: 50px !important;
+
+        font-size: 2rem;
+    }
+
+    .header-left-content {
+        display: flex !important;
+    }
+
+    .header-left-content button {
+        margin: 0;
+    }
+
+    .header-right-content p {
+        display: none;
+    }
+
+    .nav-grid .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .nav-grid  .logo .nav-close {
+        display: flex !important;
+    }
+
+    header .header-container .header-center-content h4 {
+        padding: 0;
+    }
+
+    .nav-grid {
+        overflow-y: auto;
+    }
 }

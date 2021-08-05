@@ -1,0 +1,136 @@
+button.info-user {
+    height: 40px;
+    width: 40px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    border-radius: 30%;
+
+    background-image: linear-gradient(#1c3236, #0d171a);
+}
+
+button.info-user:hover {
+    opacity: 0.9;
+}
+
+button.info-user span {
+    font-size: 24px; 
+    color: white;
+}
+
+.info-user-container {
+    position: fixed;
+    right: 0;
+    bottom: 130%;
+    
+    width: 300px;
+    height: 100%;
+
+    transition: 1s;
+    
+    background-image: linear-gradient(#3b5155, #0d171a);
+}
+
+.info-user-container.active {
+    transition: 1s;
+    bottom: 0;
+}
+
+.info-user-container h4, .info-user-container p, .info-user-container button {
+    color: white;
+}
+
+.info-user-container .div-body {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.info-user-container .div-body .div-toolbar {
+    height: 100%;
+    min-height: 70px;
+
+    padding-left: 15px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.info-user-container .div-body .div-toolbar .info-user-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    align-self: start;
+
+    border: none;
+    border-radius: 20%;
+    background-color: rgba(255, 255, 255, 0.11);
+
+    color: white;
+
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.info-user-container .div-body .div-toolbar .info-user-close i {
+    font-size: 1rem;
+}
+
+.info-user-container .div-body .div-toolbar .info-user-close:hover {
+    background-color: rgba(255, 255, 255, 0.473);
+}
+
+.info-user-container .div-body .div-toolbar h4 {
+    font-size: 1.2rem;
+}
+
+.info-user-container .div-body .user-actions {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding: 15px;
+}
+
+.info-user-container .div-body .user-actions .user-letter {
+    flex-basis: 35%;
+    height: 100px;
+
+    border-radius: 10%;
+
+    background-color: rgb(64, 122, 139);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+}
+
+.info-user-container .div-body .user-actions .actions {
+    flex-basis: 60%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+
+    color: white;
+}
+
+.info-user-container .div-body .user-actions .actions .btn-muted:hover {
+    color: #64c7e0;
+    border-bottom: 1px solid #64c7e0;
+
+}
