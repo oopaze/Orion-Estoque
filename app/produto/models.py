@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+from django.urls import reverse 
 
 
 class Produto(models.Model):
@@ -17,3 +18,11 @@ class Produto(models.Model):
 
     def __str__(self):
         return f"{self.marca} - {self.armazenamento} - {self.modelo} - (R$ {self.valor_revenda})"
+
+    @staticmethod
+    def get_list_url():
+        return reverse("list_produtos") 
+
+    @staticmethod
+    def get_add_url():
+        return reverse("create_produto") 

@@ -1,0 +1,21 @@
+{% extends "base_list.html" %}
+
+
+{% block table_celulas %}
+    {% for obj in objects_data %}
+      <tr>
+        <td> {{ obj.id }} </td>
+        <td> {{ obj.valor }} R$ </td>
+        <td> {{ obj.quantidade }} </td>
+        <td> {{ obj.comprador }} </td>
+        <td class="actions">
+            <a href="{% url 'update_venda' id=obj.id %}"> <i class="small material-icons">border_color</i> </a>
+            <a href="{% url 'detail_venda' id=obj.id %}"> ... </a>
+        </td>
+      </tr>  
+    {% empty %}
+      <tr>
+          <td colspan="5" style="text-align:center">Nenhuma venda efetuada até o momento</td>
+      </tr>
+    {% endfor %}
+{% endblock %}
