@@ -18,6 +18,7 @@
 
 .card-header, .card-body, .card-footer{
     padding: 1.5% 3% 0.7% 3% !important;
+    min-height: 80px;
 }
 
 .custom-card .card-body {
@@ -31,8 +32,6 @@
     justify-content: flex-end;
     align-items: center;
     border-top: 1px solid rgb(216, 216, 216);
-    padding-top: 20px;
-
 }
 
 .custom-card .card-footer .button-toolbox {
@@ -67,18 +66,6 @@
     color: #fff;
     background-color: #3d0005;
     border-color: #490007;
-}
-
-.btn-dark {
-    color: #fff;
-    background-color: #051a10;
-    border-color: #051a10;
-}
-
-.btn-dark:hover, .btn-dark:focus {
-    color: #fff;
-    background-color: #010f08;
-    border-color: #010f08;
 }
 
 .form-group {

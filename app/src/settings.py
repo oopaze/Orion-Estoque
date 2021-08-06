@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     'bootstrap4',
 
     'user',
@@ -143,3 +142,9 @@ LOGOUT_REDIRECT_URL = 'login'
 
 
 AUTH_USER_MODEL = "user.User"
+
+
+try: 
+    from .local_settings import *
+except:
+    pass

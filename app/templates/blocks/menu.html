@@ -27,7 +27,7 @@
             </a>
         </li>
         <li class="custom-nav-item">
-            <a href="#" class="custom-nav-link"> 
+            <a href="{% url 'list_vendas' %}" class="custom-nav-link {% if menu == 'vendas' %} active {% endif %}"> 
                 <i class="material-icons">local_offer</i>
                 Vendas 
             </a>
@@ -36,6 +36,12 @@
             <a href="#" class="custom-nav-link">
                 <i class="material-icons">group</i>
                 Usuários
+            </a>
+        </li>
+        <li class="custom-nav-item">
+            <a href="#" class="custom-nav-link">
+                <i class="material-icons">settings</i>
+                Administração
             </a>
         </li>
     </ul>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card custom-card">
+        <div class="card-header">
+            <h2>{{object}}</h2>
+            <p><strong>Comprador: </strong>{{ object.comprador }}</p>
+            <p><strong>Quantidade: </strong>{{ object.quantidade}}</p>
+            <p><strong>Produto: </strong>{{ object.produto }}</p>
+            <p><strong>Valor: </strong>{{ object.valor }}</p>
+            <p><strong>Produto: </strong>{{ object.produto }}</p>
+            <p><strong>Vendido em: </strong>{{ object.criado_em|date:"d/m/Y" }}</p>
+            
+            <form action="{% url 'delete_venda' id=object.id %}" method="DELETE">
+                <button type="submit"> Delete </button>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
