@@ -1,3 +1,4 @@
+from django.views.generic import ListView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 
@@ -5,23 +6,34 @@ from .models import Produto
 from .forms import ProdutoForm
 
 
-def list_produtos(request):
-    produtos = Produto.objects.all()
-    
-    context = {
-        "objects":produtos,
-        "menu": "produtos",
-        "title": "Produtos" 
-    }
+class ProdutosListView(ListView):
+    title = "Produtos"
+    template_name = "produto/list.html"
+    model = Produto
+    context_object_name = 'objects_data'
+    ordering = "-criado_em"
+    paginate_by = 10
+    menu_section = "produtos"
 
-    return render(request, "default/list.html", context)
+    def get_columns(self):
+        return (
+            "ID", "Serial", "Marca", "Valor Compra", "Valor Revenda", "Modelo", "Descrição", "Ações"
+        )
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['columns'] = self.get_columns()
+        ctx['title'] = self.title
+        ctx['menu'] = self.menu_section
+        ctx['model'] = self.model
+        return ctx 
 
 
 def detail_produto(request, id):
     produto = get_object_or_404(Produto, pk=id)
     
     context = {
-        "object":produto,
+        "object": produto,
         "menu": "produtos",
         "title": "Detalhes do produto" 
     }
@@ -34,7 +46,8 @@ def create_produto(request):
     context = {
         "form":form,
         "menu": "produtos",
-        "title": "Novo produto" 
+        "title": "Novo produto",
+        "model": Produto
     }
 
     if request.method == "POST":
