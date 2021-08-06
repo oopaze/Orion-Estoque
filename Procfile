@@ -1,2 +1,1 @@
-release: python manage.py migrate
-web: gunicorn --pythonpath app src.wsgi
+web: web: sh ./app/run.sh
