@@ -1,1 +1,1 @@
-web: web: sh ./app/run.sh
+web: sh ./app/run.sh
