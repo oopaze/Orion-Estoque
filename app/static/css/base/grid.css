@@ -109,4 +109,8 @@
     .nav-grid {
         overflow-y: auto;
     }
+
+    dl.attrs-container {
+        flex-basis: 100% !important;
+    }
 }
