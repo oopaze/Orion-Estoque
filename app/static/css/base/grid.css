@@ -23,6 +23,7 @@
     margin: 1%;
 
     height: auto;
+    max-width: 100%;
 
     border-radius: 2%;
 }
@@ -36,7 +37,12 @@
     box-shadow: 0px 0px 1em rgba(0, 0, 0, 0.137);
 }
 
-@media(max-width: 800px){
+@media(max-width: 1000px){
+    .table .actions a {
+        margin: 3px !important;
+        float: initial !important;
+    }
+
     .custom-container {
         display: grid;
         grid-template: 
@@ -45,7 +51,6 @@
             "footer footer footer" 50px
             / 1fr 1fr 1fr;
     }
-
     .custom-nav.custom-grid-area {
         position: fixed;
         z-index: 2;
