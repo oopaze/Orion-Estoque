@@ -5,7 +5,7 @@ from django.urls import reverse
 
 class Produto(models.Model):
     serial = models.CharField(max_length=30)
-    armazenamento = models.CharField(max_length=10)
+    tipo = models.CharField("Tipo de Produto", max_length=30, default="ssd")
     descricao = models.TextField(max_length=500)
     marca = models.CharField(max_length=20)
     modelo = models.CharField(max_length=20)
@@ -17,7 +17,7 @@ class Produto(models.Model):
     criado_em = models.DateField(auto_now_add=now)
 
     def __str__(self):
-        return f"{self.marca} - {self.armazenamento} - {self.modelo} - (R$ {self.valor_revenda})"
+        return f"{self.tipo} ({self.modelo}) - {self.marca}"
 
     @staticmethod
     def get_list_url():

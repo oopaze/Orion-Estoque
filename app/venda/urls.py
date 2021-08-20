@@ -1,7 +1,7 @@
 from django.urls import path
 from django.urls.conf import include
 
-from .views import create_venda, VendasListView, detail_venda, update_venda, delete_venda
+from .views import create_venda, VendasListView, detail_venda, update_venda, delete_venda, get_bairros
 
 urlpatterns = [
     path("", VendasListView.as_view(), name="list_vendas"),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('detail/<int:id>/', detail_venda, name="detail_venda"),
     path('update/<int:id>/', update_venda, name="update_venda"),
     path('delete/<int:id>/',delete_venda,name="delete_venda"),
+    path('bairros/', get_bairros, name="get_bairros")
 ]

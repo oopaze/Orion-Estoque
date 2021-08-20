@@ -1,25 +1,29 @@
 from django import forms
+from django.db.models import fields
+
 from .models import Venda
+from venda.choices import BAIRROS
 
 
 class VendaForm(forms.ModelForm):
-    def save(self, *args, **kwargs):
-        commit = kwargs.pop("commit",None)
-        kwargs['commit'] = False
+    bairro = forms.ChoiceField(
+        label="Bairro", 
+        choices=BAIRROS
+    )
 
-        instance = super().save(*args, **kwargs)
-        instance.valor = (
-            float(instance.produto.valor_revenda) * instance.quantidade
-        ) * (1 - (instance.desconto / 100))
-
-        if not commit:
-            instance.save()
-
-        return instance
-
-                
-
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
     class Meta:
         model = Venda
-        exclude = ["criado_em", "valor"]
+        fields = (
+            "comprador",
+            "tipo_de_contato",
+            "contato",
+            "email",
+            'cidade',
+            'bairro', 
+            'cep', 
+            'rua', 
+            'numero'
+        )

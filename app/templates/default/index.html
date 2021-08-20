@@ -1,9 +1,29 @@
 {% extends "base.html" %}
 
+{% block extra_css %}
+    <style>
+        .data-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            flex-wrap: wrap;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
     <div class="card custom-card">
         <div class="card-header">
-            <p> Seja Bem-Vindo </p>
+            <div class="data-content">
+            {% for produto in objects_data %}
+                {% include 'default/widgets/card_produto.html' with produto=produto %}
+            {% empty %}
+                <p>
+                    Seja Bem Vindo
+                </p>
+            {% endfor %}
+                </div>
         </div>
     </div>
 {% endblock %}

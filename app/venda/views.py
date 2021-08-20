@@ -5,6 +5,7 @@ from django.views.generic import ListView
 
 from .models import Venda
 from .forms import VendaForm
+from core.utils import get_bairros_choice, get_detail_instance
 # Create your views here.
 
 class VendasListView(ListView):
@@ -29,15 +30,18 @@ class VendasListView(ListView):
         ctx['model'] = self.model
         return ctx 
 
+
 def detail_venda(request, id):
     venda = get_object_or_404(Venda, pk=id)
 
     context = {
         "object":venda,
-        "menu":"produto",
-        "title":"Produto"
+        "menu":"vendas",
+        "title":"Vendas",
+        "attrs": get_detail_instance(venda, ['id'])
     }
     return render(request,"venda/detail.html",context)
+
 
 def create_venda(request):
     form = VendaForm(request.POST or None )
@@ -45,7 +49,7 @@ def create_venda(request):
     context = {
         "form":form,
         "menu":"vendas",
-        "title": "Nova Venda"
+        "title": "Adicionar Venda"
     }
 
     if request.method == "POST":
@@ -56,7 +60,8 @@ def create_venda(request):
         else:
             context['errors'] = form.errors
 
-    return render(request, "default/form.html",context)
+    return render(request, "venda/form.html",context)
+
 
 def update_venda(request, id):
     venda = get_object_or_404(Venda, pk=id)
@@ -78,7 +83,17 @@ def update_venda(request, id):
         else:
             context['errors'] = form.errors
 
-    return render(request, 'default/form.html', context)
+    return render(request, 'venda/form.html', context)
+
+
+def get_bairros(request):
+    cidade = request.GET.get('cidade', None)
+    cidade = cidade.replace("_", " ").title().replace("D", "d")
+    context = {
+        "options": get_bairros_choice(cidade)
+    }
+    return render(request, "default/widgets/options.html", context)
+
 
 def delete_venda(request, id):
     venda = get_object_or_404(Venda, pk=id)

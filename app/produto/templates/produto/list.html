@@ -4,12 +4,12 @@
 {% block table_celulas %}
     {% for obj in objects_data %}
       <tr>
-        <td> {{ obj.id }} </td>
         <td> {{ obj.serial }} </td>
+        <td> {{ obj.tipo }} </td>
+        <td> {{ obj.modelo }} </td>
         <td> {{ obj.marca }} </td>
         <td> {{ obj.valor_compra }} R$ </td>
         <td> {{ obj.valor_revenda }} R$ </td>
-        <td> {{ obj.modelo }} </td>
         <td> {{ obj.descricao }} </td>
         <td class="actions">
             <a class="edit-button" href="{% url 'update_produto' id=obj.id %}"> <i class="small material-icons">border_color</i> </a>
@@ -18,7 +18,7 @@
       </tr>  
     {% empty %}
       <tr>
-          <td colspan="5" style="text-align:center">Nenhum produto disponível no momento</td>
+          <td colspan="8" style="text-align:center">Nenhum produto disponível no momento</td>
       </tr>
     {% endfor %}
 {% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <form action="" method="post" style="height: auto;">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-toolbar">
+                    <h4 class="title">
+                        {{ title }}
+                    </h4>
+                </div>
+            </div>
+            <div class="card-body">
+                {% for erro in errors %}
+                    <p> {{ erro }} </p>
+                {% endfor %}
+
+                {% csrf_token %}
+
+                <fieldset class="row">
+                    <legend><h4> Dados Pessoais </h4></legend>
+                    <div class="col-md-6">
+                        {% bootstrap_field form.comprador %}
+                    </div>
+                    <div class="col-md-6">
+                        {% bootstrap_field form.tipo_de_contato %}
+                    </div>
+                    <div class="col-md-6">
+                        {% bootstrap_field form.contato %}
+                    </div>
+                    <div class="col-md-6">
+                        {% bootstrap_field form.email %}
+                    </div>
+                </fieldset>
+                <br>
+                <fieldset class="row">
+                    <legend><h4> Dados de Endereço </h4></legend>
+                    <div class="col-md-6">
+                        {% bootstrap_field form.cidade %}
+                    </div>
+                    <div class="col-md-6">
+                        {% bootstrap_field form.bairro %}
+                    </div>
+                    <div class="col-md-6">
+                        {% bootstrap_field form.cep %}
+                    </div>
+                    <div class="col-md-6">
+                        {% bootstrap_field form.rua %}
+                    </div>
+                    <div class="col-md-6">
+                        {% bootstrap_field form.numero %}
+                    </div>
+                </fieldset>
+            </div>
+            <div class="card-footer">
+                <div class="button-toolbar">
+                    <a class="btn btn-dark" href="{{ model.get_list_url }}">Voltar</a>
+                    <button class="btn btn-success" type="submit">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(document).ready(function(){
+            $("#id_cidade").on("change", function(){
+                let cidade = $(this).val();
+                let url = "{% url 'get_bairros' %}" + `?cidade=${cidade}`;
+                $("#id_bairro").load(url)
+            })
+        })
+    </script>
+
+{% endblock %}

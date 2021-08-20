@@ -1,0 +1,137 @@
+<style>
+  .produto-card {
+    width: 300px;
+    min-height: 370px;
+
+    background-color: #1c3035;
+    box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.445), 0 6px 20px 0 rgba(0, 0, 0, 0.521) !important;
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    border-radius: 3%;
+
+    color: white;
+    font-family: Helvetica;
+    font-size: .8rem;
+
+    margin: 10px;
+  }
+
+  .produto-card .produto-card-image {
+    width: 250px; 
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 5px;
+  } 
+
+  .produto-card .produto-card-image img {
+    display: block;
+  }
+
+  .produto-card .produto-card-data {
+    padding: 0 10px;
+    width: 100%;
+  }
+
+  .produto-card .produto-card-data .title {
+    display: block;
+
+    font-size: 1.2rem;
+    font-family: monospace;
+    text-align: center;
+
+    margin-bottom: 20px;
+  }
+
+  .produto-card .produto-card-data .valor_quantidade_div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-bottom: 10px;
+  }
+
+  .produto-card .produto-card-data .descricao {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .produto-card .produto-card-data .descricao p {
+    text-justify: auto;
+    width: 100%;
+  }
+
+  .produto-card .actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    justify-self: flex-end;
+
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .produto-card .actions a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 7px;
+    background-color: transparent;
+
+    border-width: 1px;
+    border-style: inset;
+    border-image: linear-gradient(
+      to left,
+      #5d90cf,
+      #2926db        
+    ) 1 stretch;
+    
+    border-radius: 10%;
+
+    color: #34a5c7;
+
+    font-size: 0.7rem;
+    font-family: monospace;
+  }
+
+  .produto-card .actions a:hover {
+    color: #bceeff;
+    border-image: linear-gradient(
+      to left,
+      #a9cbf5,
+      #3b3ba0        
+    ) 1 stretch;
+  }
+</style>
+
+<div class="produto-card">
+  <div class="produto-card-image">
+    <img src="{{ produto.image.url }}" alt="foto do produto">
+  </div>
+  <div class="produto-card-data">
+    <span class="title"> {{ produto }} </span>
+    <div class="valor_quantidade_div">
+      <p> <strong>Valor: </strong> {{ produto.valor_revenda|default:"0,00" }} R$ </p>
+      <p> <strong>Quantidade: </strong> {{ produto.quantidade }} </p>
+    </div>
+    <div class="descricao">
+      <p> {{ produto.descricao }} </p>
+    </div>
+  </div>
+  <div class="actions">
+    <a href="#"> Adicionar ao carrinho </a>
+    <a href="{% url 'detail_produto' produto.id %}"> Ver mais </a>
+  </div>
+</div>

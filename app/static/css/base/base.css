@@ -25,6 +25,7 @@
     margin: 10px 0;
     padding: 1.5% 3% 0.7% 3%;
     border-top: 1px solid rgb(216, 216, 216);
+    min-height: 500px;
 }
 
 .custom-card .card-footer {

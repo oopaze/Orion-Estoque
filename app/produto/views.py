@@ -1,3 +1,4 @@
+from core.utils import get_detail_instance
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -17,7 +18,7 @@ class ProdutosListView(ListView):
 
     def get_columns(self):
         return (
-            "ID", "Serial", "Marca", "Valor Compra", "Valor Revenda", "Modelo", "Descrição", "Ações"
+            "Serial", "Tipo", "Modelo","Marca", "Valor Compra", "Valor Revenda", "Descrição", "Ações"
         )
 
     def get_context_data(self, **kwargs):
@@ -35,9 +36,10 @@ def detail_produto(request, id):
     context = {
         "object": produto,
         "menu": "produtos",
-        "title": "Detalhes do produto" 
+        "title": "Detalhes do produto",
+        "attrs": get_detail_instance(produto)
     }
-    return render(request, "produto/detail.html",context)
+    return render(request, "default/detail.html",context)
     
 
 def create_produto(request):
