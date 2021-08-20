@@ -1,0 +1,84 @@
+.custom-card {
+    border: none;
+    border-radius: none;
+
+    width: 100%;
+    height: 100%;
+}
+
+.custom-card > form, .custom-card > section {
+    width: 100%;
+    height: 100%;
+}
+
+.custom-card .card-header, .custom-card .card-footer {
+    background-color: white;
+    border: none;
+}
+
+.card-header, .card-body, .card-footer{
+    padding: 1.5% 3% 0.7% 3% !important;
+    min-height: 80px;
+}
+
+.custom-card .card-body {
+    margin: 10px 0;
+    padding: 1.5% 3% 0.7% 3%;
+    border-top: 1px solid rgb(216, 216, 216);
+    min-height: 500px;
+}
+
+.custom-card .card-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid rgb(216, 216, 216);
+}
+
+.custom-card .card-footer .button-toolbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-card .card-footer .button-toolbox a {
+    margin: 0 5px;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #45574d;
+    border-color: #45574d;
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+    color: #fff;
+    background-color: #252927;
+    border-color: #252927;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #910715;
+    border-color: #910715;
+}
+
+.btn-danger:hover, .btn-danger:focus {
+    color: #fff;
+    background-color: #3d0005;
+    border-color: #490007;
+}
+
+.form-group {
+    margin: 10px 0;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #010f08;
+}
+
+.custom-card .card-header .title {
+    font-weight: 700;
+}

@@ -1,0 +1,142 @@
+form {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-logo {
+    display:none; 
+    justify-content:center; 
+    margin-bottom: 30px;
+}
+
+.title {
+    width: 60%;
+    min-width: 200px;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    width: 60%;
+    min-width: 200px;
+    margin: 20px 0;
+    font-size: 1rem;
+
+    border-bottom: 2px solid #e1e1e1;
+
+}
+
+.form-control .label {
+    margin-bottom: 5px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.form-control input {
+    border: none;
+
+    font-size: 1rem;
+    padding: 0 5px;
+    width: 100%;
+
+    min-height: 30px;
+}
+
+.form-control input:focus {
+    outline: none;
+}
+
+.form-control:focus-within {
+    border-bottom: 2px solid black;
+}
+
+.form-control:focus-within input, .form-control:focus-within i {
+    color: black;
+}
+
+.input-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    color: #321915;
+}
+
+.input-control i:first-child {
+    margin-right: 3px;
+}
+.input-control i:last-child {
+    margin-left: 3px;
+}
+
+.input-control i{
+    margin-bottom: 5px;
+    margin-top: 5px;
+
+    font-size: 0.95rem;
+}
+
+.form-checkbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 60%;
+    min-width: 200px;
+    font-size: 0.9rem;
+    color: #8f8f8f;
+
+    margin: 20px 0;
+}
+
+form button[type='submit'] {
+    width: 60%;
+    min-width: 200px;
+    min-height: 40px;
+
+    border-radius: 2%;
+    box-shadow: 0 0 1em rgba(184, 182, 182, 0.11);
+
+    background-color: #41C6F3;
+    border: none;
+}
+
+form button[type='submit']:hover {
+    opacity: 0.8;
+}
+
+#forget_password {
+    color: black;
+}
+
+#forget_password:hover {
+    text-decoration: underline;
+}
+
+
+.login-form .messages {
+    width: 60%;
+    min-width: 200px;
+}
+
+.login-form .messages span {
+    font-size: 0.8rem;
+}
+
+.login-form .error li {
+    background-color: #9e1601;
+    color: white;
+
+    padding: 5px 10px;
+    border-radius: 2%;
+}

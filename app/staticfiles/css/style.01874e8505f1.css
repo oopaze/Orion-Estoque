@@ -1,0 +1,37 @@
+:root {
+    --background-header: #1c3236;
+    --background-footer: #0d171a;
+}
+
+body, p, h1, ul, li, blockquote {
+    padding: 0;
+    margin: 0;
+
+}
+
+h1, h2, h3, h4, h5 {
+    color: #0e1a1d;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+html {
+    font-size: 16px;
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
+
+html, body, .custom-container {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-size: 1rem;
+    background-color: #edeff0;
+}
