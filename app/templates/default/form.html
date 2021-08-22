@@ -5,6 +5,11 @@
     <div class="card custom-card">
         <form action="" method="post">
             <div class="card-header">
+                <div class="card-header-toolbar">
+                    <h4 class="title"> {{ title }} </h3>
+                </div>
+            </div>
+            <div class="card-body">
                 {% for erro in errors %}
                     <p> {{ erro }} </p>
                 {% endfor %}

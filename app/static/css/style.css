@@ -34,4 +34,5 @@ html, body, .custom-container {
 body {
     font-size: 1rem;
     background-color: #edeff0;
+    font-family: helvetica;
 }
