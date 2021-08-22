@@ -103,6 +103,7 @@
             <h5> Produtos </h5>
             {% endif %}
             <div class="detail-content">
+                
                 {% for instance in object.vendaproduto_set.all %}
                 <dl class="attrs-container">
                     <dt> Referência </dt>
@@ -122,10 +123,18 @@
                 </dl>
                 <dl class="attrs-container">
                     <dt> Valor </dt>
-                    <dd> 
+                    <dd style="display: flex;"> 
                         <p>
                             {{ instance.valor }} R$ 
                         </p>
+                        {% if object.status == "em_andamento" %}
+                        <a 
+                          href="{% url 'desvincular_produto' id=object.id produto_id=instance.produto_fk.id %}" 
+                          style="margin-left: 4px;" 
+                          class="btn btn-danger"> 
+                            -
+                        </a>
+                        {% endif %}
                     </dd>
                 </dl>
             {% endfor %}

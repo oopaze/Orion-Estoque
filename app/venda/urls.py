@@ -1,13 +1,14 @@
 from django.urls import path
 from django.urls.conf import include
 
-from .views import add_produto_save, create_venda, VendasListView, detail_venda, finalizar_venda, update_venda, delete_venda, get_bairros, add_produto
+from .views import add_produto_save, create_venda, VendasListView, desvincular_produto, detail_venda, finalizar_venda, update_venda, delete_venda, get_bairros, add_produto
 
 urlpatterns = [
     path("", VendasListView.as_view(), name="list_vendas"),
     path('add/', create_venda, name="create_venda"),
     path('detail/<int:id>/', detail_venda, name="detail_venda"),
     path('add_produtos/<int:id>/', add_produto, name="venda_adicionar_produtos"),
+    path('desvincular/<int:id>/<int:produto_id>/', desvincular_produto, name="desvincular_produto"),
     path('finalizar/<int:id>/', finalizar_venda, name="finalizar_venda"),
     path('produtos/<int:id>/', add_produto_save, name="adicionar_produtos"),
     path('update/<int:id>/', update_venda, name="update_venda"),

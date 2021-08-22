@@ -135,6 +135,14 @@ def finalizar_venda(request, id):
     return redirect(reverse("detail_venda", args=[venda.pk]))
 
 
+def desvincular_produto(request, id, produto_id):
+    venda = get_object_or_404(Venda, pk=id)
+    produto = get_object_or_404(Produto, pk=produto_id)
+    VendaProduto.objects.filter(venda_fk=venda, produto_fk=produto).delete()
+    return redirect(reverse("detail_venda", args=[venda.id]))
+
+
+
 @csrf_exempt
 def add_produto_save(request, id):
     venda = get_object_or_404(Venda, pk=id)
