@@ -1,4 +1,5 @@
 import json
+from django.core.checks import messages
 
 from django.http.response import JsonResponse
 from produto.models import Produto
@@ -9,7 +10,7 @@ from django.urls import reverse
 from django.views.generic import ListView
 
 from .models import Venda, VendaProduto
-from .forms import VendaForm
+from .forms import MetodoPagamentoVendaForm, VendaForm
 from core.utils import get_bairros_choice, get_detail_instance
 # Create your views here.
 
@@ -38,9 +39,11 @@ class VendasListView(ListView):
 
 def detail_venda(request, id):
     venda = get_object_or_404(Venda, pk=id)
+    pagemento_form = MetodoPagamentoVendaForm(request.POST or None)
 
     context = {
         "object":venda,
+        "form_metodo_pagamento": pagemento_form,
         "menu":"vendas",
         "title":"Vendas",
         "attrs": get_detail_instance(venda, ['id'])
@@ -70,6 +73,7 @@ def create_venda(request):
 
 def update_venda(request, id):
     venda = get_object_or_404(Venda, pk=id)
+
     form = VendaForm(request.POST or None, instance=venda)
 
     context = {
@@ -83,7 +87,7 @@ def update_venda(request, id):
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            return redirect(reverse("list_vendas"))
+            return redirect(reverse("detail_venda", args=[venda.pk]))
         
         else:
             context['errors'] = form.errors
@@ -112,7 +116,7 @@ def add_produto(request, id):
 
     context = {
         "object": venda,
-        "produtos": Produto.objects.all(),
+        "produtos": Produto.objects.filter(quantidade__gt=0),
         "menu": "vendas",
         "has_add_button": True,
         "title": "Adicionar Produtos"
@@ -122,8 +126,11 @@ def add_produto(request, id):
 
 
 def finalizar_venda(request, id):
-    venda = get_object_or_404(Venda, pk=id)
-    venda.save(save_close=True)
+
+    if request.method == "POST":
+        venda = get_object_or_404(Venda, pk=id)
+        venda.pagamento = request.POST.get("pagamento", None)
+        venda.save(save_close=True)
 
     return redirect(reverse("detail_venda", args=[venda.pk]))
 

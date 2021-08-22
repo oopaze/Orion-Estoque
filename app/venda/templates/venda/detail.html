@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap4 %}
 
 {% block extra_css %}
     <style>
@@ -74,8 +75,10 @@
                 <h4 class="title"> Detalhes Venda </h4>
                 <div class="button">
                     {% if object.status == "em_andamento" %}
-                        <a href="{% url 'finalizar_venda' object.id %}" class="btn btn-success"> Finalizar </a>
-                        <a href="{% url 'venda_adicionar_produtos' object.id %}" class="btn btn-info"> Adicionar Produtos </a>
+                        <button type="button" class="btn btn-success" id="finalizar">
+                            Finalizar
+                        </button>
+                        <a href="{% url 'venda_adicionar_produtos' object.id %}" class="btn btn-primary"> Adicionar Produtos </a>
                     {% endif %}
                     <a href="{{ object.get_delete_url }}" class="btn btn-danger"> Delete </a>
                     <a href="{{ object.get_absolute_url }}" class="btn btn-secondary"> Editar </a>
@@ -129,4 +132,41 @@
             </div>
         </div>
     </div>
+      
+      <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{% url 'finalizar_venda' object.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        {% bootstrap_form form_metodo_pagamento %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary modal-close" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Finalizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        $(document).ready(function(){
+            $("#finalizar").on("click", function(){
+                $("#exampleModalCenter").modal("show")
+            })
+
+            $(".close, .modal-close").on("click", function(){
+                $("#exampleModalCenter").modal("hide")
+            })
+        })
+    </script>
 {% endblock %}

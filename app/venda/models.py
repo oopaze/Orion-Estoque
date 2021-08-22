@@ -38,11 +38,13 @@ class Venda(models.Model):
         save_close = kwargs.pop("save_close", None)
 
         if save_close:
-            self.send_telegram_message()
             self.save_close()
 
         instance = super().save(*args, **kwargs)
         
+        if save_close:
+            self.send_telegram_message()
+
         return instance
 
     def save_close(self):
@@ -56,17 +58,25 @@ class Venda(models.Model):
         url_venda = f"{ settings.SITE_URL }{reverse('detail_venda', args=[self.pk])}"
         cidade = self.cidade.replace("_", " ").title()
 
+        message = "Uma nova venda foi adicionada.\n\n" \
+                  "Dados da Venda: \n" \
+                 f"  Cliente: {self.comprador} \n  Telefone: {self.contato}\n" \
+                 f"  Endereço: {self.rua} \n  Nº: {self.numero}\n" \
+                 f"  Cidade: {cidade} \n  Bairro: {self.bairro}\n\n\n" \
+
+        message += "Produtos: \n"
+        for item in self.vendaproduto_set.all():
+            message += f"    ({item.quantidade}) - {item.produto_fk}\n"
+            
+        message += f"\nTotalizando um valor de: {self.valor:.2f} R$ no {self.get_pagamento_display()}\n\n" \
+                   "Por favor, entre no link abaixo para mais informações\n\n" \
+                  f"URL: {url_venda}\n\n" \
+                   "Orion Bot, \n" \
+                   "Abraços!" \
+
         Bot = BotTelegram()
         Bot.send_message(
-            "Uma nova venda foi adicionada.\n\n"
-            "Dados da Venda: \n"
-            f"Cliente: {self.comprador} \nTelefone: {self.contato}\n"
-            f"Endereço: {self.rua} \nNº: {self.numero}\n"
-            f"Cidade: {cidade} \nBairro: {self.bairro}\n\n"
-            "Por favor, entre no link abaixo para mais informações\n\n"
-            f"URL: {url_venda}\n\n"
-            "Orion Bot, \n"
-            "Abraços!"
+            message
         )
 
     def calculate_valor(self):

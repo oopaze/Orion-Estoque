@@ -26,3 +26,9 @@ class VendaForm(forms.ModelForm):
             "rua", 
             "numero",
         )
+
+
+class MetodoPagamentoVendaForm(forms.ModelForm):
+    class Meta:
+        model = Venda
+        fields = ('pagamento',)
