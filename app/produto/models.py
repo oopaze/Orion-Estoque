@@ -26,3 +26,12 @@ class Produto(models.Model):
     @staticmethod
     def get_add_url():
         return reverse("create_produto") 
+
+    def get_absolute_url(self):
+        return reverse("update_produto", args=[self.id])
+
+    def get_detail_url(self):
+        return reverse("detail_produto", args=[self.id])
+
+    def get_delete_url(self):
+        return reverse("delete_produto", args=[self.id])

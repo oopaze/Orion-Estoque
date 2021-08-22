@@ -1,4 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm
+from django import forms
+
+from user.models import User
 
 
 class CustomAuthenticationForm(AuthenticationForm):
@@ -9,3 +12,9 @@ class CustomAuthenticationForm(AuthenticationForm):
             self.fields[key].widget.attrs.update({
                 "placeholder": "Email" if key == 'username' else "Senha"
             })
+
+
+class UserChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ("first_name", "last_name", "email", "username")

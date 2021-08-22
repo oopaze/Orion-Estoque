@@ -45,6 +45,10 @@
     margin: 0 5px;
 }
 
+.custom-card .card-header .card-toolbar {
+    height: 100%;
+} 
+
 .btn-secondary {
     color: #fff;
     background-color: #45574d;
@@ -81,4 +85,106 @@
 
 .custom-card .card-header .title {
     font-weight: 700;
+}
+
+
+/*
+List View
+*/
+.card-header-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 100%;
+}
+
+.table .actions {
+    text-align: center;
+}
+
+.table .actions a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+
+    background-color: rgb(41, 82, 71);
+    color: white;
+
+    border-radius: 20%;
+    box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.11);
+
+    margin: 0 2px;
+
+    text-align: center;
+    float: left;
+}
+
+.table .actions a:hover {
+    opacity: 0.8;
+}
+
+
+/*
+Detail view
+*/
+.detail-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+dl.attrs-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-basis: 33%;
+    padding: 0px 5px;
+}
+
+dl.attrs-container dt {
+    font-weight: bold;
+    font-family: monospace;
+    letter-spacing: .05rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+dl.attrs-container dd {
+    background-color: #dfe1e28c;
+
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-image: linear-gradient(
+      to left,
+      #bfd3ec,
+      #090761        
+    ) 1 stretch;
+
+    width: 100%;
+    height: auto;
+}
+
+dl.attrs-container dd p {
+    margin: 0;
+    display: block;
+    width: 100%;
+    line-height: 30px;
+    min-height: 30px;
+    padding: 0px 5px;
+
+    font-family: helvetica;
+    font-size: 0.8rem;
+
+}
+
+.card-toolbar {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

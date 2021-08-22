@@ -15,15 +15,7 @@
 {% block content %}
     <div class="card custom-card">
         <div class="card-header">
-            <div class="data-content">
-            {% for produto in objects_data %}
-                {% include 'default/widgets/card_produto.html' with produto=produto %}
-            {% empty %}
-                <p>
-                    Seja Bem Vindo
-                </p>
-            {% endfor %}
-                </div>
+            Seja Bem Vindo
         </div>
     </div>
 {% endblock %}

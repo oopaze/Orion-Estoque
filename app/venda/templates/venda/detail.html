@@ -72,6 +72,10 @@
         <div class="card-header">
             <div class="card-toolbar">
                 <h4 class="title"> Detalhes Venda </h4>
+                <div class="button">
+                    <a href="{{ object.get_delete_url }}" class="btn btn-danger"> Delete </a>
+                    <a href="{{ object.get_absolute_url }}" class="btn btn-secondary"> Editar </a>
+                </div>
             </div>
         </div>
         <div class="card-body">

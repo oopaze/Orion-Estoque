@@ -1,42 +1,5 @@
 {% extends "base.html" %}
 
-{% block extra_css %}
-    <style>
-        .card-header-toolbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .table .actions {
-            text-align: center;
-        }
-
-        .table .actions a {
-            display: block;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-
-            background-color: rgb(41, 82, 71);
-            color: white;
-
-            border-radius: 20%;
-            box-shadow: 0em 0em 1em rgba(0, 0, 0, 0.11);
-
-            margin: 0 2px;
-
-            text-align: center;
-            float: left;
-        }
-
-        .table .actions a:hover {
-            opacity: 0.8;
-        }
-
-    </style>
-{% endblock %}
-
 {% block content %}
     <div class="card custom-card">
         <div class="card-header">

@@ -48,6 +48,15 @@ class Venda(models.Model):
     def get_add_url():
         return reverse("create_venda")
 
+    def get_absolute_url(self):
+        return reverse("update_venda", args=[self.id])
+
+    def get_detail_url(self):
+        return reverse("detail_venda", args=[self.id])
+
+    def get_delete_url(self):
+        return reverse("delete_venda", args=[self.id])
+
 
 class VendaProduto(models.Model):
     produto = models.ForeignKey(

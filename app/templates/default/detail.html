@@ -1,73 +1,20 @@
 {% extends "base.html" %}
 
-{% block extra_css %}
-    <style>
-        .detail-content {
-            display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-        }
-        dl.attrs-container {
-            display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-            flex-direction: column;
-            flex-basis: 33%;
-            padding: 0px 5px;
-        }
-
-        dl.attrs-container dt {
-            font-weight: bold;
-            font-family: monospace;
-            letter-spacing: .05rem;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            margin-top: 10px;
-        }
-
-        dl.attrs-container dd {
-            background-color: #dfe1e28c;
-
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-image: linear-gradient(
-              to left,
-              #5d90cf,
-              #2926db        
-            ) 1 stretch;
-
-            width: 100%;
-            height: auto;
-        }
-        
-        dl.attrs-container dd p {
-            margin: 0;
-            display: block;
-            width: 100%;
-            line-height: 30px;
-            padding: 0px 5px;
-
-            font-family: helvetica;
-            font-size: 0.8rem;
-
-        }
-
-        .card-toolbar {
-            width: 100%;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
-{% endblock %}
-
 {% block content %}
     <div class="card custom-card">
         <div class="card-header">
             <div class="card-toolbar">
                 <h4 class="title"> Detalhes Produto </h4>
+                <div class="buttons">
+                    {% if not dont_delete %}
+                    <a href="{{ object.get_delete_url }}" class="btn btn-danger">
+                        Delete
+                    </a>
+                    {% endif %}
+                    <a href="{{ object.get_absolute_url }}" class="btn btn-secondary">
+                        Editar
+                    </a>
+                </div>
             </div>
         </div>
         <div class="card-body">
