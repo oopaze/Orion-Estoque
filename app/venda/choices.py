@@ -18,3 +18,9 @@ TIPO_CONTATO = (
     ("indicacao", "Indicação"),
     ("wpp", "WhatsApp")
 )
+
+VENDA_STATUS = (
+    ("em_andamento", "Em Andamento"),
+    ("a_caminho", "A caminho"),
+    ("entregue", "Entregue")
+)

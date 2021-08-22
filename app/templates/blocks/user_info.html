@@ -1,4 +1,60 @@
+<style>
+    .car {
+        min-height: 30px !important;
+    }
 
+    .itens {
+        font-family: monospace;
+        color: white;
+        height: 100%;
+        width: 100%;
+    }
+    .itens li {
+        border-bottom-width: 1px;
+        border-bottom-style: inset;
+        border-image: linear-gradient( to left, #13ebce, #cadaee) 1 stretch;
+
+        padding-bottom: 15px;
+        padding-top: 15px;
+        margin-left: 30px;
+    }
+    .itens h6 {
+        font-weight: 600;
+        font-size: 1rem;
+    }
+    .itens .name-close {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+    .itens h6, .itens p {
+        margin: 0;
+        padding: 0;
+    }
+    .itens p {
+        font-size: 0.7rem;
+    }
+
+
+    .close {
+        background: transparent;
+        border: none;
+        border-radius: 20%;
+
+        margin: 0;
+        padding: 0;
+        margin-right: 5px;
+
+        width: 30px;
+        height: 25px;
+    }
+
+    .close:hover {
+        background-color: rgba(255, 255, 255, 0.178);
+    }
+</style>
 <div class="info-user-container">
     <div class="div-body">
         <div class="div-toolbar">   
@@ -17,5 +73,16 @@
         </div>
 
         <hr style="border: 1px solid #79959c;">
+        
+        <div class="div-body">
+            <div class="div-toolbar car" style="margin-top: 0;">
+                <h4> Carrinho </h4>
+            </div>
+        </div>
+        <div class="itens">
+            <ul>
+                
+            </ul>
+        </div>
     </div>
 </div>

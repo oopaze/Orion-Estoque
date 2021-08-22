@@ -6,7 +6,7 @@ def get_detail_instance(instance, ignore_fields=[], last_fields=[]):
     last_attrs = []
 
     for field in instance._meta.fields:
-        value = getattr(instance, field.name)
+        value = getattr(instance, field.name) if not field.choices else getattr(instance, f"get_{field.name}_display")()
 
         if field.name in ignore_fields:
             pass

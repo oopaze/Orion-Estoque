@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+    <style>
+        .data-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            flex-wrap: wrap;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="card custom-card">
+        <div class="card-header">
+            <div class="card-header-toolbar">
+                <h4 class="title"> {{ title }} </h4>
+                <button class="btn btn-success finalizar" href="#"> Fechar Vendas </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="data-content">
+            {% for produto in produtos %}
+                {% include 'default/widgets/card_produto.html' with produto=produto %}
+            {% empty %}
+                <p>
+                    Nenhum produto adicionado
+                </p>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        var produtos = [];
+        
+        $(document).ready(function(){
+            $(".finalizar").on('click', async function(){
+                await $.ajax({
+                    type: "post",
+                    url: "{% url 'adicionar_produtos' object.id %}",
+                    dataType: "json",
+                    success: function(response){
+                        console.log(response)
+                    },
+                    data: JSON.stringify({produtos: produtos})
+                });
+
+                window.location.href = "{{ object.get_detail_url }}";
+            })
+        })
+
+        function add_produto(card_id){
+            const card = document.querySelector(`#${card_id}`) 
+        
+            const quantidade_produto = card.querySelector("input[name='quantidade']").value;
+            const produto = card.querySelector("#produto").innerText;
+            var valor = card.querySelector("#valor").innerText.replace(",", ".");
+        
+            if (quantidade_produto <= 0){
+                alert("Produto sem estoque!");
+                return
+            }
+        
+            const id_produto = card.querySelector("input[name='id']").value;
+            var quantidade = prompt("Quantidade: ");
+        
+            while (quantidade > quantidade_produto || quantidade < 0) {
+                let message = `Quantidade inválida. Há somente ${quantidade_produto} produtos disponíveis.\n`
+                message += "Digite novamente:" 
+                var quantidade = prompt(message)
+            }
+
+            console.log(typeof quantidade)
+
+            if (isNaN(quantidade) || typeof quantidade == 'object'){
+                return
+            }
+
+            if (quantidade !== ''){
+                quantidade = parseInt(quantidade);
+                valor = parseFloat(valor);
+
+                let is_added = false;
+                produtos.forEach((item) => {
+                    if(item.id === id_produto){
+                        item.quantidade += quantidade;
+                        item.valor += valor * quantidade;
+                        is_added = true;
+                    }
+                })
+                
+                if (!is_added){
+                    produtos.push({
+                        id: id_produto,
+                        quantidade: quantidade,
+                        produto: produto,
+                        valor: valor * quantidade
+                    })
+                }
+
+                document.querySelector("button.info-user span").innerText = produtos.length;
+            }
+        
+            card.querySelector("input[name='quantidade']").value -= quantidade;
+            card.querySelector("#quantidade").innerText = card.querySelector("input[name='quantidade']").value;
+            add_to_car()
+        }
+
+
+        function get_item_html(produto) {
+            let item = "<li>"
+            item += "    <div class='name-close'>"
+            item += `        <h6> ${produto.produto} </h5>`
+            item += `        <button class='close' onclick='delete_replace_item(${produto.id})'>`
+            item += "            <i class='material-icons'>close</i>"
+            item += "        </button>"
+            item += "    </div>"
+            item += `    <span style='display: none;' id='span${produto.id}'></span>`
+            item += `    <p> Quantidade: ${produto.quantidade} </p>`
+            item += `    <p> Valor: ${produto.valor},00 R$ </p>`
+            item += "</li>"
+
+            return item
+        }
+
+        function delete_replace_item(id){
+            const li = document.querySelector(`#span${id}`).parentElement;
+            var produto;
+
+            produtos.forEach((item) => {
+                if(item.id == id){
+                    produto = item;
+                }
+            })
+
+            if(produto){
+                let produto_quantidade = document.querySelector(`#produto-${id} #quantidade`);
+                let quantidade_input = document.querySelector(`#produto-${id} input[name='quantidade']`);
+                let new_quantidade = parseInt(produto_quantidade.innerText) + produto.quantidade;
+                li.remove();
+                produto_quantidade.innerText = quantidade_input.value = new_quantidade;
+                produtos.pop(produto)
+            }
+        }
+
+
+        function add_to_car () {
+            var produtos_html = '';
+
+            produtos.forEach((item) => {
+                produtos_html += get_item_html(item);
+            })
+            document.querySelector(".itens ul").innerHTML = produtos_html;
+        }
+    </script>
+{% endblock %}

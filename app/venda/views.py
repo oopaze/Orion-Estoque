@@ -1,9 +1,14 @@
+import json
+
+from django.http.response import JsonResponse
+from produto.models import Produto
 from django.http import request
 from django.shortcuts import get_object_or_404, render, redirect, get_list_or_404
+from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 from django.views.generic import ListView
 
-from .models import Venda
+from .models import Venda, VendaProduto
 from .forms import VendaForm
 from core.utils import get_bairros_choice, get_detail_instance
 # Create your views here.
@@ -100,4 +105,58 @@ def delete_venda(request, id):
     venda.delete()
 
     return redirect(reverse("list_vendas"))
+
+
+def add_produto(request, id):
+    venda = get_object_or_404(Venda, pk=id)
+
+    context = {
+        "object": venda,
+        "produtos": Produto.objects.all(),
+        "menu": "vendas",
+        "has_add_button": True,
+        "title": "Adicionar Produtos"
+    }
+
+    return render(request, 'venda/add_produtos.html', context)
+
+
+def finalizar_venda(request, id):
+    venda = get_object_or_404(Venda, pk=id)
+    venda.save(save_close=True)
+
+    return redirect(reverse("detail_venda", args=[venda.pk]))
+
+
+@csrf_exempt
+def add_produto_save(request, id):
+    venda = get_object_or_404(Venda, pk=id)
+    produtos = json.loads(list(request.POST.keys())[0])['produtos']
+
+    produto_ids = [int(produto.get('id', -1)) for produto in produtos]
+
+    instances = Produto.objects.filter(id__in = produto_ids)
+
+    if request.method == 'POST':
+
+        for instance in instances:
+            quantidade = list(filter(
+                lambda item: int(item['id']) == instance.id, produtos
+            ))[0]['quantidade']
+
+            venda_produto_instance = venda.vendaproduto_set.filter(produto_fk__id=instance.id)
+
+            if venda_produto_instance.exists():
+                venda_produto_instance = venda_produto_instance.first()
+                venda_produto_instance.quantidade = quantidade
+                venda_produto_instance.save()
+                continue
+            
+            VendaProduto.objects.create(
+                venda_fk=venda,
+                produto_fk=instance,
+                quantidade=quantidade,
+            )
+
+    return JsonResponse({"success": True})
 

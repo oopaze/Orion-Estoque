@@ -116,22 +116,27 @@
   }
 </style>
 
-<div class="produto-card">
+<div class="produto-card" id="produto-{{ produto.id }}">
   <div class="produto-card-image">
     <img src="{{ produto.image.url }}" alt="foto do produto">
   </div>
   <div class="produto-card-data">
-    <span class="title"> {{ produto }} </span>
+    <input type="hidden" name="id" value="{{ produto.id }}">
+    <input type="hidden" name="quantidade" value="{{ produto.quantidade }}">
+    <span class="title" id="produto"> {{ produto }} </span>
     <div class="valor_quantidade_div">
-      <p> <strong>Valor: </strong> {{ produto.valor_revenda|default:"0,00" }} R$ </p>
-      <p> <strong>Quantidade: </strong> {{ produto.quantidade }} </p>
+      <p> <strong>Valor: </strong> <span id="valor">{{ produto.valor_revenda|default:"0,00" }}</span> R$ </p>
+      <p> <strong>Quantidade: </strong> <span id="quantidade">{{ produto.quantidade }}</span> </p>
     </div>
     <div class="descricao">
       <p> {{ produto.descricao }} </p>
     </div>
   </div>
   <div class="actions">
-    <a href="#"> Adicionar ao carrinho </a>
+    {% if has_add_button %}
+      <a href="javascript:void(0)" onclick="add_produto('produto-{{produto.id}}')"> Adicionar a venda </a>
+    {% endif %}
     <a href="{% url 'detail_produto' produto.id %}"> Ver mais </a>
   </div>
 </div>
+

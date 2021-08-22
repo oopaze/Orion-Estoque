@@ -73,6 +73,10 @@
             <div class="card-toolbar">
                 <h4 class="title"> Detalhes Venda </h4>
                 <div class="button">
+                    {% if object.status == "em_andamento" %}
+                        <a href="{% url 'finalizar_venda' object.id %}" class="btn btn-success"> Finalizar </a>
+                        <a href="{% url 'venda_adicionar_produtos' object.id %}" class="btn btn-info"> Adicionar Produtos </a>
+                    {% endif %}
                     <a href="{{ object.get_delete_url }}" class="btn btn-danger"> Delete </a>
                     <a href="{{ object.get_absolute_url }}" class="btn btn-secondary"> Editar </a>
                 </div>
@@ -86,6 +90,38 @@
                     <dd> 
                         <p>
                             {{ attr.value }} 
+                        </p>
+                    </dd>
+                </dl>
+            {% endfor %}
+            </div>
+            <hr>
+            {% if object.vendaproduto_set.all %}
+            <h5> Produtos </h5>
+            {% endif %}
+            <div class="detail-content">
+                {% for instance in object.vendaproduto_set.all %}
+                <dl class="attrs-container">
+                    <dt> Referência </dt>
+                    <dd> 
+                        <p>
+                            {{ instance.produto_fk }} 
+                        </p>
+                    </dd>
+                </dl>
+                <dl class="attrs-container">
+                    <dt> Quantidade </dt>
+                    <dd> 
+                        <p>
+                            {{ instance.quantidade }} 
+                        </p>
+                    </dd>
+                </dl>
+                <dl class="attrs-container">
+                    <dt> Valor </dt>
+                    <dd> 
+                        <p>
+                            {{ instance.valor }} R$ 
                         </p>
                     </dd>
                 </dl>

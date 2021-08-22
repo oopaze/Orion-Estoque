@@ -10,6 +10,8 @@ class VendaForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['responsavel'].required = True
+            
+
     class Meta:
         model = Venda
         fields = (
@@ -18,9 +20,9 @@ class VendaForm(forms.ModelForm):
             "tipo_de_contato",
             "contato",
             "email",
-            'cidade',
-            'bairro', 
-            'cep', 
-            'rua', 
-            'numero'
+            "cidade",
+            "bairro", 
+            "cep", 
+            "rua", 
+            "numero",
         )
