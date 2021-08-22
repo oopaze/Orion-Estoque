@@ -21,6 +21,9 @@
                 <fieldset class="row">
                     <legend><h4> Dados Pessoais </h4></legend>
                     <div class="col-md-6">
+                        {% bootstrap_field form.responsavel %}
+                    </div>
+                    <div class="col-md-6">
                         {% bootstrap_field form.comprador %}
                     </div>
                     <div class="col-md-6">
@@ -37,13 +40,13 @@
                 <fieldset class="row">
                     <legend><h4> Dados de Endereço </h4></legend>
                     <div class="col-md-6">
+                        {% bootstrap_field form.cep %}
+                    </div>
+                    <div class="col-md-6">
                         {% bootstrap_field form.cidade %}
                     </div>
                     <div class="col-md-6">
                         {% bootstrap_field form.bairro %}
-                    </div>
-                    <div class="col-md-6">
-                        {% bootstrap_field form.cep %}
                     </div>
                     <div class="col-md-6">
                         {% bootstrap_field form.rua %}
@@ -70,6 +73,27 @@
                 let cidade = $(this).val();
                 let url = "{% url 'get_bairros' %}" + `?cidade=${cidade}`;
                 $("#id_bairro").load(url)
+            })
+
+            $("#id_contato").inputmask({
+                mask:["(99) 9 9999-9999"]
+            })
+
+            $("#id_cep").keyup(function(e){
+                if(this.value.length >= 8){
+                    $.ajax({
+                        url: `https://viacep.com.br/ws/${this.value}/json/`,
+                        type: 'get',
+                        success: function(data){
+                            $("#id_cidade").val(data.localidade);
+                            $("#id_cidade").prop("readonly", true);
+                            $("#id_rua").val(data.logradouro);
+                            $("#id_rua").prop("readonly", true);
+                            $("#id_bairro").val(data.bairro );
+                            $("#id_bairro").prop("readonly", true);
+                        }
+                    })
+                }
             })
         })
     </script>

@@ -12,3 +12,9 @@ CIDADES = (
 )
 
 BAIRROS = get_bairros_choice()
+
+TIPO_CONTATO = (
+    ("redes_sociais", "Redes Sociais"),
+    ("indicacao", "Indicação"),
+    ("wpp", "WhatsApp")
+)

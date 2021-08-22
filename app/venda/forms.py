@@ -6,17 +6,14 @@ from venda.choices import BAIRROS
 
 
 class VendaForm(forms.ModelForm):
-    bairro = forms.ChoiceField(
-        label="Bairro", 
-        choices=BAIRROS
-    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
+        self.fields['responsavel'].required = True
     class Meta:
         model = Venda
         fields = (
+            "responsavel",
             "comprador",
             "tipo_de_contato",
             "contato",
