@@ -13,14 +13,14 @@ def get_detail_instance(instance, ignore_fields=[], last_fields=[]):
 
         elif field.name in last_fields:
             last_attrs.append({
-                "value": value or '',
+                "value": value if value is not None else "",
                 "label": field.verbose_name,
                 "name": field.name,
             })
 
         else:
             attrs.append({
-                "value": value or '',
+                "value": value is not None else "",
                 "label": field.verbose_name,
                 "name": field.name,
             })
