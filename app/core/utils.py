@@ -20,7 +20,7 @@ def get_detail_instance(instance, ignore_fields=[], last_fields=[]):
 
         else:
             attrs.append({
-                "value": value is not None else "",
+                "value": value if is not None else "",
                 "label": field.verbose_name,
                 "name": field.name,
             })
